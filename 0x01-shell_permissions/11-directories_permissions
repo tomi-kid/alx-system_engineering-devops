@@ -1,2 +1,3 @@
 #!/bin/bash
-find . -type -exec chmod a+x -- {} +\
+chmod -R a+x */
+
