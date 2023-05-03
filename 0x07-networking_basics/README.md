@@ -1,6 +1,8 @@
-# 0x07. Networking basics #0
+## 0x07. Networking basics #0
 
-## In this project I learnt about
+# In this project I learnt about
+0x07-networking_basics
+# Understand the concept of
 - OSI Model
   - What it is
   - How many layers it has
