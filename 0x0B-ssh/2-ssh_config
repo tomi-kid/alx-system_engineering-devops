@@ -2,5 +2,5 @@
 # Configure SSH configuration file
 Host 100.26.222.88
     IdentityFile ~/.ssh/school
-    PreferredAuthentications publickey
+    user ubuntu
     PasswordAuthentication no
