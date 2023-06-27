@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 #start apache2 inside docker
-service apache2 start
+service apache2 restart
 curl 0:8080
