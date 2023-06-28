@@ -1,5 +1,33 @@
-# Install Nginx web server (w/ Puppet)
-exec { 'service nginx restart':
-  provider => shell,
-  command  => 'sudo apt-get -y update; sudo apt-get -y install nginx; echo "Hello World!" > /var/www/html/index.html; sudo sed -i "/server_name _;/a location /redirect_me {\\n\\treturn 301 https://google.com; listen 80; \\n\\t}\\n" /etc/nginx/sites-available/default; sudo service nginx restart'
+# File: nginx_config.pp
+
+exec { 'install_nginx':
+  command => 'apt-get update && apt-get install nginx -y',
+  path    => ['/usr/bin', '/usr/sbin'],
+  creates => '/etc/nginx/sites-available/default',
+}
+
+file { '/etc/nginx/sites-available/default':
+  ensure  => file,
+  content => '
+    server {
+      listen 80 default_server;
+      listen [::]:80 default_server;
+
+      root /var/www/html;
+
+      location / {
+        return 200 "Hello World!\n";
+      }
+
+      location /redirect_me {
+        return 301 https://www.example.com/;
+      }
+    }
+  ',
+  notify  => Service['nginx'],
+}
+
+service { 'nginx':
+  ensure  => running,
+  enable  => true,
 }
