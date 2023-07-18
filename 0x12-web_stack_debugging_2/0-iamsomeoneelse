@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash/env bash
 # This script runs the whoami command under the user passed as an argument
 # Check if an argument is provided
 # whoami command as the specified user
